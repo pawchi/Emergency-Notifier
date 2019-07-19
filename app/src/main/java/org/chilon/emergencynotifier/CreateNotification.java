@@ -2,6 +2,7 @@ package org.chilon.emergencynotifier;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -21,7 +22,10 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class CreateNotification extends AppCompatActivity {
 
@@ -37,6 +41,7 @@ public class CreateNotification extends AppCompatActivity {
     int hoursCountdown;
     private long timeLeftInMillis = 0;
     TextView setSendingTime;
+    ArrayList<ObjectToSend> waitedMessages;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,21 +57,18 @@ public class CreateNotification extends AppCompatActivity {
         View phoneNumber = layoutInflater.inflate(R.layout.enter_phone_number, null, false);
         View sendingTime = layoutInflater.inflate(R.layout.setup_sending_time, null, false);
         View writeSms = layoutInflater.inflate(R.layout.write_sms, null, false);
-        //View horizontalLine = layoutInflater.inflate(R.layout.horizontal_line, null, false);
 
         send = findViewById(R.id.sms_send_button_in_inflation_view);
+        waitedMessages = new ArrayList<>();
 
         switch (extras){
             case 1:
                 myparent.addView(phoneNumber);
-                //myparent.addView(horizontalLine);
                 myparent.addView(writeSms);
-                //myparent.addView(horizontalLine);
                 myparent.addView(sendingTime);
                 break;
             case 2:
                 myparent.addView(phoneNumber);
-                //myparent.addView(horizontalLine);
                 myparent.addView(sendingTime);
                 break;
             case 3:
@@ -90,9 +92,8 @@ public class CreateNotification extends AppCompatActivity {
         startTimer();
     }
 
-    public void sendSms(){
-        String phoneNumber = number.getText().toString();
-        String smsMessage  = message.getText().toString();
+    public void sendSms(String smsMessage, String phoneNumber){
+
         String messageSent = getResources().getString(R.string.toast_message_sent);
         String noPermission = getResources().getString(R.string.toast_no_permission);
         if (phoneNumber == null || phoneNumber.length() == 0 || smsMessage == null || smsMessage.length() == 0){
@@ -178,7 +179,6 @@ public class CreateNotification extends AppCompatActivity {
     private void updateSendingTime(int seconds, int minutes, int hours){
         setSendingTime = findViewById(R.id.choosen_sending_time_value);
         String formatForTime = getResources().getString(R.string.format_show_sending_time);
-        //String formatedTimeToSend = String.format(Locale.getDefault(), "%02dh : %02dm : %02ds", seconds, minutes, hours);
         String formatedTimeToSend = String.format(Locale.getDefault(), formatForTime, hours, minutes, seconds);
         setSendingTime.setText(formatedTimeToSend);
         timeLeftInMillis = (seconds * 1000)+(minutes * 60 * 1000)+(hours * 3600 * 1000);
@@ -190,6 +190,12 @@ public class CreateNotification extends AppCompatActivity {
 
 
     private void startTimer(){
+        final String phoneNumber = number.getText().toString();
+        final String smsMessage  = message.getText().toString();
+        ObjectToSend objectToSend = new ObjectToSend(phoneNumber, smsMessage, "");
+        waitedMessages.add(objectToSend);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("sendingList", waitedMessages);
         new CountDownTimer(timeLeftInMillis, 1000){
 
             public void onTick(long millisUntilFinished){
@@ -200,7 +206,7 @@ public class CreateNotification extends AppCompatActivity {
 
             public void onFinish(){
                 try {
-                    sendSms();
+                    sendSms(smsMessage, phoneNumber);
 
                 } catch (Exception e) {
                     e.printStackTrace();
