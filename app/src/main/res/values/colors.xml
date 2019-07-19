@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#010B0A</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorLayouts_1">#8DC6CE</color>
+
+    <color name="primary_text">#ff000000</color>
+    <color name="settings_text">#FFFFFFFF</color>
+    <color name="settings_buttons_background">#FFAAAAAA</color>
+    <color name="settings_buttons_text">#FFFFFFFF</color>
+    <color name="settings_language_buttons">#3F51B5</color>
+
+
+</resources>

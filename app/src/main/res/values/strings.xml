@@ -1,0 +1,59 @@
+<resources>
+    <!--Main View-->
+    <string name="app_name">EmergencyNotifier</string>
+    <string name="action_settings">Settings</string>
+    <string name="sms_button">SEND SMS</string>
+    <string name="email_button">SEND EMAIL</string>
+    <string name="call_button">SEND VOICE MESSAGE</string>
+    <string name="choose_action">CHOOSE HOW TO NOTIFY</string>
+
+    <!--SMS View-->
+    <string name="enter_SMS_content_label">WRITE DOWN SMS CONTENT</string>
+    <string name="sms_input">Write down your message</string>
+    <string name="phone_number_input_label">ENTER PHONE NUMBER</string>
+    <string name="phone_number_input_field">Enter phone number</string>
+    <string name="last_contacts">LAST NUMBERS</string>
+    <string name="contacts">CONTACTS</string>
+    <string name="sending_time_setup_label">SETUP SENDING TIME</string>
+    <string name="calendar_label">CALENDAR</string>
+    <string name="count_down_label">COUNTDOWN TIMER</string>
+    <string name="send_button">SEND</string>
+    <string name="format_show_sending_time" translatable="false">%02dh : %02dm : %02ds</string>
+
+
+    <!--Popup window countdown timer-->
+    <string name="setSeconds_label">ENTER SECONDS:</string>
+    <string name="setSeconds_input" translatable="false">0</string>
+    <string name="setMinutes_label">ENTER MINUTES:</string>
+    <string name="setMinutes_input" translatable="false">0</string>
+    <string name="setHours_label">ENTER HOURS:</string>
+    <string name="setHours_input" translatable="false">0</string>
+    <string name="ok_button_countdown" translatable="false">OK</string>
+    <string name="cancel_button_countdown">CANCEL SENDING</string>
+
+    <!--SetUp select language-->
+    <string name="settings_label">SETTINGS:</string>
+    <string name="select_language">SELECT LANGUAGE</string>
+    <string name="rate_app">RATE APPLICATION</string>
+    <string name="ok_button" translatable="false">OK</string>
+    <string name="cancel_button" translatable="false">CANCEL</string>
+
+
+    <string name="language_polish">POLISH</string>
+    <string name="language_english">ENGLISH</string>
+    <string name="language_french">FRENCH</string>
+    <string name="language_german">GERMAN</string>
+    <string name="language_portuguese">PORTUGUESE</string>
+    <string name="language_russian">RUSSIAN</string>
+    <string name="language_spanish">SPANISH</string>
+
+    <!--Popup message sending info and cancel-->
+    <string name="left_time_label" translatable="false">TIME LEFT TO SEND: </string>
+    <string name="choosen_sending_time_text_label">YOUR SET TIME TO SEND: </string>
+    <string name="choosen_sending_time_value" translatable="false">0</string>
+    <string name="toast_message_will_be_send">YOUR MESSAGE WILL BE SEND IN YOUR SET UP TIME </string>
+    <string name="toast_message_sent">MESSAGE SENT! </string>
+    <string name="toast_no_permission">PERMISSION DENIED! </string>
+
+
+</resources>
