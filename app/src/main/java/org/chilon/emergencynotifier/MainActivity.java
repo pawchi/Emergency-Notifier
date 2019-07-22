@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Button emailButton;
     MenuItem item;
     public static final String MAIN_RESPONSE = "method_of_sending";
+    ArrayList<ObjectToSend> listOfWaitedMessages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +81,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Response from CreateNotification
 
+        Intent intent2 = getIntent();
+        ArrayList<ObjectToSend> listOfWaitedMessages = intent2.getParcelableArrayListExtra("MessagesList");
+        Integer numberOfMessages = intent2.getIntExtra("updateNumberOfMessages", -1);
+
+        if (listOfWaitedMessages != null){
+            int arrayLength = listOfWaitedMessages.size();
+            String lengthText = "Number of waited messages: " + arrayLength;
+            Toast.makeText(this, lengthText, Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

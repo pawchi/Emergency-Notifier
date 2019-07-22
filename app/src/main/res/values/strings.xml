@@ -35,20 +35,9 @@
     <string name="settings_label">SETTINGS:</string>
     <string name="select_language">SELECT LANGUAGE</string>
     <string name="rate_app">RATE APPLICATION</string>
-    <string name="ok_button" translatable="false">OK</string>
-    <string name="cancel_button" translatable="false">CANCEL</string>
 
-
-    <string name="language_polish">POLISH</string>
-    <string name="language_english">ENGLISH</string>
-    <string name="language_french">FRENCH</string>
-    <string name="language_german">GERMAN</string>
-    <string name="language_portuguese">PORTUGUESE</string>
-    <string name="language_russian">RUSSIAN</string>
-    <string name="language_spanish">SPANISH</string>
 
     <!--Popup message sending info and cancel-->
-    <string name="left_time_label" translatable="false">TIME LEFT TO SEND: </string>
     <string name="choosen_sending_time_text_label">YOUR SET TIME TO SEND: </string>
     <string name="choosen_sending_time_value" translatable="false">0</string>
     <string name="toast_message_will_be_send">YOUR MESSAGE WILL BE SEND IN YOUR SET UP TIME </string>

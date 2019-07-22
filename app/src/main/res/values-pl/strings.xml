@@ -18,16 +18,9 @@
     <string name="setSeconds_label">WPISZ SEKUNDY</string>
     <string name="sms_button">WYŚLIJ SMS</string>
     <string name="sms_input">Wpisz treść wiadomości</string>
-    <string name="language_english">ANGIELSKI</string>
-    <string name="language_polish">POLSKI</string>
     <string name="select_language">WYBIERZ JĘZYK</string>
     <string name="settings_label">USTAWIENIA:</string>
     <string name="rate_app">OCEŃ APLIKACJĘ</string>
-    <string name="language_french">FRANCUSKI</string>
-    <string name="language_german">NIEMIECKI</string>
-    <string name="language_portuguese">PORTUGALSKI</string>
-    <string name="language_russian">ROSYJSKI</string>
-    <string name="language_spanish">HISZPAŃSKI</string>
     <string name="send_button">WYŚLIJ</string>
     <string name="cancel_button_countdown">ANULUJ WYSŁANIE</string>
     <string name="choosen_sending_time_text_label">CZAS USTAWIONY DO WYSŁANIA:</string>

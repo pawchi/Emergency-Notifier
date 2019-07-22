@@ -21,11 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class CreateNotification extends AppCompatActivity {
 
@@ -42,6 +39,7 @@ public class CreateNotification extends AppCompatActivity {
     private long timeLeftInMillis = 0;
     TextView setSendingTime;
     ArrayList<ObjectToSend> waitedMessages;
+    public static final String RESPONSE_1_FROM_CREATE_NOTIFICATION = "waitingMessages";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,6 +85,8 @@ public class CreateNotification extends AppCompatActivity {
     public void onSend(View v){
         number = findViewById(R.id.input_phone_number_field);
         message = findViewById(R.id.sms_input_text_field);
+        //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        //startActivity(intent);
         String messageWillBeSend = getResources().getString(R.string.toast_message_will_be_send);
         Toast.makeText(this, messageWillBeSend, Toast.LENGTH_LONG).show();
         startTimer();
@@ -188,14 +188,30 @@ public class CreateNotification extends AppCompatActivity {
 
     }
 
+    public void prepareHistoryOfMessages(String phoneNo, String smsMessage){
+        ObjectToSend objectToSend = new ObjectToSend(phoneNo, smsMessage, "");
+        waitedMessages.add(objectToSend);
+
+        int amountOfMessages = waitedMessages.size();
+        Intent intent = new Intent(this, MainActivity.class);
+        //intent.putExtra("MessagesList", waitedMessages);
+        intent.putExtra("numberOfMessages", amountOfMessages);
+        startActivity(intent);
+    }
+
+    public void updateNumberOfMessages(){
+        waitedMessages.remove(0);
+        Integer amountOfMessages = waitedMessages.size();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("updateNumberOfMessages", amountOfMessages);
+        startActivity(intent);
+    }
+
 
     private void startTimer(){
         final String phoneNumber = number.getText().toString();
         final String smsMessage  = message.getText().toString();
-        ObjectToSend objectToSend = new ObjectToSend(phoneNumber, smsMessage, "");
-        waitedMessages.add(objectToSend);
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("sendingList", waitedMessages);
+        prepareHistoryOfMessages(phoneNumber, smsMessage);
         new CountDownTimer(timeLeftInMillis, 1000){
 
             public void onTick(long millisUntilFinished){
@@ -207,6 +223,7 @@ public class CreateNotification extends AppCompatActivity {
             public void onFinish(){
                 try {
                     sendSms(smsMessage, phoneNumber);
+                    updateNumberOfMessages();
 
                 } catch (Exception e) {
                     e.printStackTrace();

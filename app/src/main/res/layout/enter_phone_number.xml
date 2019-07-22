@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/layout_phone_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -12,7 +11,6 @@
         android:background="#afb5c6">
 
     <TextView
-        android:id="@+id/sms_input_phone_number_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -52,7 +50,6 @@
         android:orientation="horizontal"
         android:weightSum="2">
         <TextView
-            android:id="@+id/last_numbers"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -65,7 +62,6 @@
             android:layout_height="match_parent"
             android:background="@color/colorPrimaryDark" />
         <TextView
-            android:id="@+id/contacts"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

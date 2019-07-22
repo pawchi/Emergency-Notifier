@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layout_write_sms"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -15,7 +14,6 @@
         android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp">
         <LinearLayout
-            android:id="@+id/layout_sms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#afb5c6"
@@ -24,7 +22,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             <TextView
-                android:id="@+id/sms_input_view_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/enter_SMS_content_label"
