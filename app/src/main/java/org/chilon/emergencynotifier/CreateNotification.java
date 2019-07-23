@@ -39,7 +39,8 @@ public class CreateNotification extends AppCompatActivity {
     private long timeLeftInMillis = 0;
     TextView setSendingTime;
     ArrayList<ObjectToSend> waitedMessages;
-    public static final String RESPONSE_1_FROM_CREATE_NOTIFICATION = "waitingMessages";
+    public static final String INITIAL_NUMBER_OF_MESSAGES = "Initial sms number";
+    public static final String UPDATED_NUMBER_OF_MESSAGES = "Updated sms number";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -191,20 +192,24 @@ public class CreateNotification extends AppCompatActivity {
     public void prepareHistoryOfMessages(String phoneNo, String smsMessage){
         ObjectToSend objectToSend = new ObjectToSend(phoneNo, smsMessage, "");
         waitedMessages.add(objectToSend);
-
-        int amountOfMessages = waitedMessages.size();
         Intent intent = new Intent(this, MainActivity.class);
-        //intent.putExtra("MessagesList", waitedMessages);
-        intent.putExtra("numberOfMessages", amountOfMessages);
+        currantNumberOfMessages(intent);
         startActivity(intent);
     }
 
     public void updateNumberOfMessages(){
         waitedMessages.remove(0);
         Integer amountOfMessages = waitedMessages.size();
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("updateNumberOfMessages", amountOfMessages);
-        startActivity(intent);
+        Intent resultIntent = new Intent(this, MainActivity.class);
+        resultIntent.putExtra(UPDATED_NUMBER_OF_MESSAGES, amountOfMessages);
+        setResult(RESULT_OK, resultIntent);
+        finish();
+        //startActivity(intent);
+    }
+
+    public void currantNumberOfMessages(Intent intent){
+        Integer amountOfMessages = waitedMessages.size();
+        intent.putExtra(UPDATED_NUMBER_OF_MESSAGES, amountOfMessages);
     }
 
 

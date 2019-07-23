@@ -23,11 +23,10 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center_vertical"
-            android:layout_weight="0.05">
+            android:gravity="center_vertical">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/choose_action"
@@ -35,10 +34,40 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                app:srcCompat="@drawable/sms" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp"
+                android:paddingLeft="16dp"
+                android:paddingBottom="16dp">
+
+
+
+                <ImageView
+                    android:id="@+id/icon_sms"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    app:srcCompat="@drawable/sms" />
+
+                <com.nex3z.notificationbadge.NotificationBadge
+                    android:id="@+id/badge"
+                    android:layout_toEndOf="@+id/icon_sms"
+                    android:layout_alignTop="@+id/icon_sms"
+                    android:layout_marginStart="-16dp"
+                    android:layout_marginTop="-8dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    app:nbBackground="@drawable/badge_with_shadow"
+                    app:nbMaxTextLength="2">
+                </com.nex3z.notificationbadge.NotificationBadge>
+
+
+            </RelativeLayout>
+
 
 
         </LinearLayout>
