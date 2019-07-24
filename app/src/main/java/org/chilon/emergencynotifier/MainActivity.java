@@ -1,7 +1,11 @@
 package org.chilon.emergencynotifier;
 
+import android.app.Activity;
 import android.content.ClipData;
+import android.content.ContentProvider;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -93,7 +97,10 @@ public class MainActivity extends AppCompatActivity {
         }*/
 
         //Show number in sms_badge
-        numberOfMessages = getIntent().getIntExtra(CreateNotification.UPDATED_NUMBER_OF_MESSAGES,0);
+        //numberOfMessages = getIntent().getIntExtra(CreateNotification.UPDATED_NUMBER_OF_MESSAGES,0);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("smsList", Activity.MODE_PRIVATE);
+        numberOfMessages = sharedPreferences.getInt("numberOfSms", 0);
         nBadge = (NotificationBadge) findViewById(R.id.badge);
         nBadge.setNumber(numberOfMessages);
     }

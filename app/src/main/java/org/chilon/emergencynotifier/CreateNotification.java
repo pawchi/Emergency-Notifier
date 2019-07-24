@@ -1,8 +1,10 @@
 package org.chilon.emergencynotifier;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -122,7 +124,7 @@ public class CreateNotification extends AppCompatActivity {
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
         //show the popup window
-        //which view you pass in doesn't matter, it is only used for the window tolken
+        //which view you pass it doesn't matter, it is only used for the window tolken
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         //dismiss the popup window when touched outside or click cancel button
@@ -185,31 +187,49 @@ public class CreateNotification extends AppCompatActivity {
         timeLeftInMillis = (seconds * 1000)+(minutes * 60 * 1000)+(hours * 3600 * 1000);
     }
 
-    private void updateCountDownText(){
-
-    }
 
     public void prepareHistoryOfMessages(String phoneNo, String smsMessage){
-        ObjectToSend objectToSend = new ObjectToSend(phoneNo, smsMessage, "");
-        waitedMessages.add(objectToSend);
+        //ObjectToSend objectToSend = new ObjectToSend(phoneNo, smsMessage, "");
+        //waitedMessages.add(objectToSend);
+        //int amountOfMessages = waitedMessages.size();
+        saveAndAddNumberOfListToSharedPreferences();
         Intent intent = new Intent(this, MainActivity.class);
-        currantNumberOfMessages(intent);
+        //currantNumberOfMessages(intent);
         startActivity(intent);
     }
 
     public void updateNumberOfMessages(){
-        waitedMessages.remove(0);
-        Integer amountOfMessages = waitedMessages.size();
+        //waitedMessages.remove(0);
+        //Integer amountOfMessages = waitedMessages.size();
+        saveAndSubstractNumberOfListToSharedPreferencesTemp();
+
         Intent resultIntent = new Intent(this, MainActivity.class);
-        resultIntent.putExtra(UPDATED_NUMBER_OF_MESSAGES, amountOfMessages);
-        setResult(RESULT_OK, resultIntent);
-        finish();
-        //startActivity(intent);
+        //resultIntent.putExtra(UPDATED_NUMBER_OF_MESSAGES, amountOfMessages);
+        //setResult(RESULT_OK, resultIntent);
+        //finish();
+        startActivity(resultIntent);
     }
 
-    public void currantNumberOfMessages(Intent intent){
-        Integer amountOfMessages = waitedMessages.size();
-        intent.putExtra(UPDATED_NUMBER_OF_MESSAGES, amountOfMessages);
+    public void saveAndSubstractNumberOfListToSharedPreferencesTemp(){
+        SharedPreferences sharedPreferences = getSharedPreferences("smsList", Activity.MODE_PRIVATE);
+        int sharedNoOfSms = sharedPreferences.getInt("numberOfSms", 0);
+        sharedNoOfSms = sharedNoOfSms - 1;
+
+        SharedPreferences sharedPref = getSharedPreferences("smsList", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("numberOfSms", sharedNoOfSms);
+        editor.apply();
+    }
+
+    public void saveAndAddNumberOfListToSharedPreferences(){
+        SharedPreferences sharedPreferences = getSharedPreferences("smsList", Activity.MODE_PRIVATE);
+        int sharedNoOfSms = sharedPreferences.getInt("numberOfSms", 0);
+        sharedNoOfSms = sharedNoOfSms + 1;
+
+        SharedPreferences sharedPref = getSharedPreferences("smsList", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("numberOfSms", sharedNoOfSms);
+        editor.apply();
     }
 
 
@@ -221,7 +241,6 @@ public class CreateNotification extends AppCompatActivity {
 
             public void onTick(long millisUntilFinished){
                 timeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
 
             }
 
