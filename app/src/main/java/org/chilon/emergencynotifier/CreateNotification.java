@@ -30,6 +30,7 @@ public class CreateNotification extends AppCompatActivity {
 
     LinearLayout myparent;
     final  int SEND_SMS_PERMISSION_REQUEST_CODE = 1;
+    private static final int REQUEST_CALL = 1;
     EditText number;
     EditText message;
     Button send;
@@ -41,8 +42,6 @@ public class CreateNotification extends AppCompatActivity {
     private long timeLeftInMillis = 0;
     TextView setSendingTime;
     ArrayList<ObjectToSend> waitedMessages;
-    public static final String INITIAL_NUMBER_OF_MESSAGES = "Initial sms number";
-    public static final String UPDATED_NUMBER_OF_MESSAGES = "Updated sms number";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,10 +66,22 @@ public class CreateNotification extends AppCompatActivity {
                 myparent.addView(phoneNumber);
                 myparent.addView(writeSms);
                 myparent.addView(sendingTime);
+                send.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onSend(view);
+                    }
+                });
                 break;
             case 2:
                 myparent.addView(phoneNumber);
                 myparent.addView(sendingTime);
+                send.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startPhoneCall(view);
+                    }
+                });
                 break;
             case 3:
                 myparent.addView(phoneNumber);
@@ -255,6 +266,10 @@ public class CreateNotification extends AppCompatActivity {
             }
 
         }.start();
+    }
+
+    public void startPhoneCall(View view){
+
     }
 
 }

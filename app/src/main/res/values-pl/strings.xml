@@ -3,11 +3,11 @@
     <string name="app_name">EmergencyNotifier</string>
     <string name="action_settings">Ustawienia</string>
     <string name="calendar_label">KALENDARZ</string>
-    <string name="call_button">WYŚLIJ WIADOMOŚĆ GŁOSOWĄ</string>
+    <string name="call_button">AUTOMATYCZNIE ZADZWOŃ O OKREŚLONYM CZASIE</string>
     <string name="choose_action">WYBIERZ SPOSÓB POWIADOMIENIA</string>
     <string name="contacts">KONTAKTY</string>
     <string name="count_down_label">STOPER - ODLICZANIE</string>
-    <string name="email_button">WYŚLIJ EMAIL</string>
+    <string name="email_button">WYŚLIJ EMAIL W OKREŚLONYM CZASIE</string>
     <string name="enter_SMS_content_label">WPISZ TREŚĆ SMS</string>
     <string name="last_contacts">WYBIERANE NUMERY</string>
     <string name="phone_number_input_field">Wpisz numer telefonu</string>
@@ -16,7 +16,7 @@
     <string name="setHours_label">WPISZ GODZINY</string>
     <string name="setMinutes_label">WPISZ MINUTY</string>
     <string name="setSeconds_label">WPISZ SEKUNDY</string>
-    <string name="sms_button">WYŚLIJ SMS</string>
+    <string name="sms_button">WYŚLIJ SMS W OKREŚLONYM CZASIE</string>
     <string name="sms_input">Wpisz treść wiadomości</string>
     <string name="select_language">WYBIERZ JĘZYK</string>
     <string name="settings_label">USTAWIENIA:</string>
