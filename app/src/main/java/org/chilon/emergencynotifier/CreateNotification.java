@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
@@ -79,7 +81,7 @@ public class CreateNotification extends AppCompatActivity {
                 send.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startPhoneCall(view);
+                        preparePhoneCall();
                     }
                 });
                 break;
@@ -96,33 +98,8 @@ public class CreateNotification extends AppCompatActivity {
         }
     }
 
-    public void onSend(View v){
-        number = findViewById(R.id.input_phone_number_field);
-        message = findViewById(R.id.sms_input_text_field);
-        //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        //startActivity(intent);
-        String messageWillBeSend = getResources().getString(R.string.toast_message_will_be_send);
-        Toast.makeText(this, messageWillBeSend, Toast.LENGTH_LONG).show();
-        startTimer();
-    }
 
-    public void sendSms(String smsMessage, String phoneNumber){
-
-        String messageSent = getResources().getString(R.string.toast_message_sent);
-        String noPermission = getResources().getString(R.string.toast_no_permission);
-        if (phoneNumber == null || phoneNumber.length() == 0 || smsMessage == null || smsMessage.length() == 0){
-            return ;
-        }
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED){
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phoneNumber, null, smsMessage, null,null);
-            Toast.makeText(this, messageSent, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, noPermission, Toast.LENGTH_LONG).show();
-        }
-    }
-
+    //Popup Window *******************************************************************************
     public void onCountdownTimerClick(View view){
         //inflate the layout of popup window
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -198,6 +175,31 @@ public class CreateNotification extends AppCompatActivity {
         timeLeftInMillis = (seconds * 1000)+(minutes * 60 * 1000)+(hours * 3600 * 1000);
     }
 
+    //SMS **************************************************************************************
+    public void onSend(View v){
+        number = findViewById(R.id.input_phone_number_field);
+        message = findViewById(R.id.sms_input_text_field);
+        String messageWillBeSend = getResources().getString(R.string.toast_message_will_be_send);
+        Toast.makeText(this, messageWillBeSend, Toast.LENGTH_LONG).show();
+        startSmsTimer();
+    }
+
+    public void sendSms(String smsMessage, String phoneNumber){
+
+        String messageSent = getResources().getString(R.string.toast_message_sent);
+        String noPermission = getResources().getString(R.string.toast_no_permission);
+        if (phoneNumber == null || phoneNumber.length() == 0 || smsMessage == null || smsMessage.length() == 0){
+            return ;
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED){
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(phoneNumber, null, smsMessage, null,null);
+            Toast.makeText(this, messageSent, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, noPermission, Toast.LENGTH_LONG).show();
+        }
+    }
 
     public void prepareHistoryOfMessages(String phoneNo, String smsMessage){
         //ObjectToSend objectToSend = new ObjectToSend(phoneNo, smsMessage, "");
@@ -243,8 +245,7 @@ public class CreateNotification extends AppCompatActivity {
         editor.apply();
     }
 
-
-    private void startTimer(){
+    private void startSmsTimer(){
         final String phoneNumber = number.getText().toString();
         final String smsMessage  = message.getText().toString();
         prepareHistoryOfMessages(phoneNumber, smsMessage);
@@ -268,7 +269,54 @@ public class CreateNotification extends AppCompatActivity {
         }.start();
     }
 
-    public void startPhoneCall(View view){
+    //Phone Call ****************************************************************************
+
+    public void preparePhoneCall(){
+        number = findViewById(R.id.input_phone_number_field);
+        String phoneCallWillStart = getResources().getString(R.string.toast_phone_call_wiil_start);
+        Toast.makeText(this, phoneCallWillStart, Toast.LENGTH_LONG).show();
+        startPhoneCallTimer(number.getText().toString());
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void startPhoneCallTimer(final String phoneNo){
+        new CountDownTimer(timeLeftInMillis, 1000){
+
+            public void onTick(long millisUntilFinished){
+                timeLeftInMillis = millisUntilFinished;
+
+            }
+
+            public void onFinish(){
+                try {
+                    startPhoneCall(phoneNo);;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }.start();
+    }
+
+    public void startPhoneCall(String phoneNo){
+        //String callNumber = number.getText().toString();
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" + phoneNo));
+        startActivity(callIntent);
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setMode(AudioManager.MODE_IN_CALL);
+        if(!audioManager.isSpeakerphoneOn())
+            audioManager.setSpeakerphoneOn(true);
+        //audioManager.setMode(AudioManager.MODE_NORMAL);
+    }
+
+    public void prepareHistoryOfCalls(){
+
+    }
+
+    public void updateHistoryOfCalls(){
 
     }
 

@@ -27,4 +27,5 @@
     <string name="toast_message_sent">WIADOMOŚĆ ZOSTAŁA WYSŁANA</string>
     <string name="toast_message_will_be_send">WIADOMOŚĆ ZOSTANIE WYSŁANA W USTAWIONYM CZASIE</string>
     <string name="toast_no_permission">BRAK UPRAWNIEŃ DO WYSŁANIA WIADOMOŚCI</string>
+    <string name="toast_phone_call_wiil_start">POŁĄCZENIE ZOSTANIE WYKONANE W USTAWIONYM CZASIE</string>
 </resources>

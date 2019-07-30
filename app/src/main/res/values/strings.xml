@@ -43,6 +43,7 @@
     <string name="toast_message_will_be_send">YOUR MESSAGE WILL BE SEND IN YOUR SET UP TIME </string>
     <string name="toast_message_sent">MESSAGE SENT! </string>
     <string name="toast_no_permission">PERMISSION DENIED! </string>
+    <string name="toast_phone_call_wiil_start">PHONE CALL WILL START IN SET UP TIME </string>
 
 
 </resources>
