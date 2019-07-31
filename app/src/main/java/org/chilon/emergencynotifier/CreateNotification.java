@@ -14,7 +14,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.PhoneStateListener;
 import android.telephony.SmsManager;
+import android.telephony.TelephonyManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -45,6 +47,11 @@ public class CreateNotification extends AppCompatActivity {
     TextView setSendingTime;
     ArrayList<ObjectToSend> waitedMessages;
 
+    StatePhoneReceiver myPhoneStateListner;
+    TelephonyManager manager;
+    boolean callFromApp = false;
+    boolean callFromOffHook = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +69,10 @@ public class CreateNotification extends AppCompatActivity {
 
         send = findViewById(R.id.sms_send_button_in_inflation_view);
         waitedMessages = new ArrayList<>();
+
+        //Call action
+        myPhoneStateListner = new StatePhoneReceiver(this);
+        manager = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE));
 
         switch (extras){
             case 1:
@@ -81,6 +92,8 @@ public class CreateNotification extends AppCompatActivity {
                 send.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        manager.listen(myPhoneStateListner, PhoneStateListener.LISTEN_CALL_STATE);
+                        callFromApp = true;
                         preparePhoneCall();
                     }
                 });
@@ -96,6 +109,8 @@ public class CreateNotification extends AppCompatActivity {
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, SEND_SMS_PERMISSION_REQUEST_CODE);
         }
+
+
     }
 
 
@@ -305,10 +320,9 @@ public class CreateNotification extends AppCompatActivity {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:" + phoneNo));
         startActivity(callIntent);
-        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        audioManager.setMode(AudioManager.MODE_IN_CALL);
-        if(!audioManager.isSpeakerphoneOn())
-            audioManager.setSpeakerphoneOn(true);
+        //AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        //audioManager.setMode(AudioManager.MODE_IN_CALL);
+        //audioManager.setSpeakerphoneOn(true);
         //audioManager.setMode(AudioManager.MODE_NORMAL);
     }
 
