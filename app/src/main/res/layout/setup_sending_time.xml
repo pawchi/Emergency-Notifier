@@ -41,10 +41,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:shadowColor="@color/colorPrimary"
-                android:text="@string/calendar_label"
+                android:text="@string/popup_calendar_label"
                 android:textAlignment="center"
                 android:textColor="#3F51B5"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="onCalendarClick"/>
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"

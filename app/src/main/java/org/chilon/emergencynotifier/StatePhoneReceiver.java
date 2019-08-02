@@ -29,8 +29,8 @@ public class StatePhoneReceiver extends PhoneStateListener {
                 audioManager.setSpeakerphoneOn(true);
                 break;
             case TelephonyManager.CALL_STATE_IDLE:
-                //AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                //audioManager.setMode(AudioManager.MODE_NORMAL);
+                AudioManager audioManager2 = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                audioManager2.setMode(AudioManager.MODE_NORMAL);
 
         }
     }

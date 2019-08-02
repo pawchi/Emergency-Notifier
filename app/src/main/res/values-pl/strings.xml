@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">EmergencyNotifier</string>
     <string name="action_settings">Ustawienia</string>
-    <string name="calendar_label">KALENDARZ</string>
+    <string name="popup_calendar_label">WYBIERZ DATĘ AKCJI</string>
     <string name="call_button">AUTOMATYCZNIE ZADZWOŃ O OKREŚLONYM CZASIE</string>
     <string name="choose_action">WYBIERZ SPOSÓB POWIADOMIENIA</string>
     <string name="contacts">KONTAKTY</string>
@@ -28,4 +28,7 @@
     <string name="toast_message_will_be_send">WIADOMOŚĆ ZOSTANIE WYSŁANA W USTAWIONYM CZASIE</string>
     <string name="toast_no_permission">BRAK UPRAWNIEŃ DO WYSŁANIA WIADOMOŚCI</string>
     <string name="toast_phone_call_wiil_start">POŁĄCZENIE ZOSTANIE WYKONANE W USTAWIONYM CZASIE</string>
+    <string name="popup_calendar_XXX">XXX</string>
+    <string name="popup_time_label">WYBIERZ CZAS AKCJI</string>
+    <string name="calendar_label">KALENDARZ</string>
 </resources>

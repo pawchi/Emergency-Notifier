@@ -45,5 +45,10 @@
     <string name="toast_no_permission">PERMISSION DENIED! </string>
     <string name="toast_phone_call_wiil_start">PHONE CALL WILL START IN SET UP TIME </string>
 
+    <!--Popup calendar-->
+    <string name="popup_calendar_label">CHOOSE DATE OF ACTION </string>
+    <string name="popup_time_label">CHOOSE TIME OF ACTION </string>
+    <string name="popup_calendar_XXX">CHOOSE DATE OF ACTION </string>
+
 
 </resources>

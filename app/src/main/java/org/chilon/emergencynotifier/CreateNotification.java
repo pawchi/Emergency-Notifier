@@ -114,7 +114,7 @@ public class CreateNotification extends AppCompatActivity {
     }
 
 
-    //Popup Window *******************************************************************************
+    //Popup Window Countdown*******************************************************************************
     public void onCountdownTimerClick(View view){
         //inflate the layout of popup window
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -178,6 +178,27 @@ public class CreateNotification extends AppCompatActivity {
 
                 updateSendingTime(secondsCountdown, minutesCountdown, hoursCountdown);
                 popupWindow.dismiss();
+            }
+        });
+    }
+
+    //Popup Window Calendar*******************************************************************************
+    public void onCalendarClick(View view){
+        //inflate the layout of popup window
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View calendarView = inflater.inflate(R.layout.popup_calendar, null);
+        //create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; //lets taps outside popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(calendarView, width, height, focusable);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        calendarView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                popupWindow.dismiss();
+                return true;
             }
         });
     }
