@@ -107,7 +107,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:layout_marginBottom="10dp">
         <Button
             android:id="@+id/ok_button_countdown"
             android:layout_width="match_parent"

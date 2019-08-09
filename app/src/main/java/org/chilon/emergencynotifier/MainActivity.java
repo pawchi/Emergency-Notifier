@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.nex3z.notificationbadge.NotificationBadge;
@@ -31,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<ObjectToSend> listOfWaitedMessages;
     int numberOfMessages = 0;
     NotificationBadge nBadge;
+    ListView listView;
+    String[] actionNames = {getResources().getString(R.string.sms_button), getResources().getString(R.string.call_button), getResources().getString(R.string.email_button)};
+    String[] itemColor = {"#9ad0f0", "#6f87c9", "#407b9f"};
+    Integer[] images = {R.drawable.sms, android.R.drawable.sym_action_call, android.R.drawable.sym_action_email};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        listView = (ListView) findViewById(R.id.listViewMain);
+
 
         /*
         FloatingActionButton fab = findViewById(R.id.fab);
