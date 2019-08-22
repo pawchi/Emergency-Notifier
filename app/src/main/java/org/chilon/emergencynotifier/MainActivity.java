@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
     int numberOfMessages = 0;
     NotificationBadge nBadge;
     ListView listView;
-    String[] actionNames = {getResources().getString(R.string.sms_button), getResources().getString(R.string.call_button), getResources().getString(R.string.email_button)};
-    String[] itemColor = {"#9ad0f0", "#6f87c9", "#407b9f"};
-    Integer[] images = {R.drawable.sms, android.R.drawable.sym_action_call, android.R.drawable.sym_action_email};
+    //String[] actionNames = {getResources().getString(R.string.sms_button), getResources().getString(R.string.call_button), getResources().getString(R.string.email_button)};
+    //String[] itemColor = {"#9ad0f0", "#6f87c9", "#407b9f"};
+    //Integer[] images = {R.drawable.sms, android.R.drawable.sym_action_call, android.R.drawable.sym_action_email};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

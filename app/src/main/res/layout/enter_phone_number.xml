@@ -8,7 +8,7 @@
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="#afb5c6">
+        android:background="#6f87c9">
 
     <TextView
         android:layout_width="match_parent"

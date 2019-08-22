@@ -41,8 +41,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp"
-                android:background="#ccff00"
+                android:background="#20ae9c"
                 android:text="@string/send_button"
+                android:textColor="@android:color/secondary_text_dark"
                 android:textSize="36sp" />
         </LinearLayout>
     </ScrollView>
