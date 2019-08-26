@@ -17,7 +17,7 @@
     <string name="setMinutes_label">WPISZ MINUTY</string>
     <string name="setSeconds_label">WPISZ SEKUNDY</string>
     <string name="sms_button">WYŚLIJ SMS W OKREŚLONYM CZASIE</string>
-    <string name="sms_input">Wpisz treść wiadomości</string>
+    <string name="sms_input">Twoja wiadomość</string>
     <string name="select_language">WYBIERZ JĘZYK</string>
     <string name="settings_label">USTAWIENIA:</string>
     <string name="rate_app">OCEŃ APLIKACJĘ</string>

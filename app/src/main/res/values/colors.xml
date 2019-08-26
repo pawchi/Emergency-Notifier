@@ -8,5 +8,7 @@
     <color name="settings_text">#FFFFFFFF</color>
     <color name="settings_buttons_background">#FFAAAAAA</color>
 
+    <color name="color_waiting_messages">#ff7f50</color>
+
 
 </resources>

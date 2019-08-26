@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/conctraint_layout_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main_appbar">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="2">
 
         <LinearLayout
+            android:id="@+id/how_to_notify_layout"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:orientation="horizontal"
@@ -72,20 +70,8 @@
 
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/listViewMain"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:divider="@null"
-            android:dividerHeight="0dp">
 
-        </ListView>
-
-
-
+        <!--
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -129,6 +115,23 @@
                 android:layout_weight="1"
                 android:layout_marginBottom="5dp"/>
         </LinearLayout>
-    </LinearLayout>
+        -->
+
+    <ListView
+        android:id="@+id/listViewMain"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/transparent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintBottom_toBottomOf="@id/conctraint_layout_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/how_to_notify_layout">
+
+    </ListView>
 
 </android.support.constraint.ConstraintLayout>

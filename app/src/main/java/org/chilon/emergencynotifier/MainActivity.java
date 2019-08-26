@@ -1,23 +1,16 @@
 package org.chilon.emergencynotifier;
 
 import android.app.Activity;
-import android.content.ClipData;
-import android.content.ContentProvider;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.nex3z.notificationbadge.NotificationBadge;
 
@@ -25,75 +18,35 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button smsButton;
-    Button callButton;
-    Button emailButton;
     MenuItem item;
     public static final String MAIN_RESPONSE = "method_of_sending";
     ArrayList<ObjectToSend> listOfWaitedMessages;
     int numberOfMessages = 0;
     NotificationBadge nBadge;
     ListView listView;
-    //String[] actionNames = {getResources().getString(R.string.sms_button), getResources().getString(R.string.call_button), getResources().getString(R.string.email_button)};
-    //String[] itemColor = {"#9ad0f0", "#6f87c9", "#407b9f"};
-    //Integer[] images = {R.drawable.sms, android.R.drawable.sym_action_call, android.R.drawable.sym_action_email};
+    String[] itemColor = {"#9ad0f0", "#6f87c9", "#407b9f"};
+    Integer[] images = {R.drawable.sms, android.R.drawable.sym_action_call, android.R.drawable.sym_action_email};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_appbar);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        String[] actionNames = {getResources().getString(R.string.sms_button), getResources().getString(R.string.call_button), getResources().getString(R.string.email_button)};
+
+
         listView = (ListView) findViewById(R.id.listViewMain);
+        CustomListView customListView = new CustomListView(this, actionNames, itemColor, images );
+        listView.setAdapter(customListView);
 
-
-        /*
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        */
-
-        smsButton = (Button) findViewById(R.id.smsButton);
-        callButton = (Button) findViewById(R.id.callButton);
-        emailButton = (Button) findViewById(R.id.emailButton);
-
-        smsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), CreateNotification.class);
-                intent.putExtra(MAIN_RESPONSE, 1);
-                startActivity(intent);
-            }
-        });
-
-        /*
-        callButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CreateNotification.class);
-                startActivity(intent);
-            }
-        });*/
-        callButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CreateNotification.class);
-                intent.putExtra(MAIN_RESPONSE, 2);
-                startActivity(intent);
-            }
-        });
-
-        emailButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CreateNotification.class);
-                intent.putExtra(MAIN_RESPONSE, 3);
+                intent.putExtra(MAIN_RESPONSE, position);
+                setResult(RESULT_OK, intent);
                 startActivity(intent);
             }
         });
