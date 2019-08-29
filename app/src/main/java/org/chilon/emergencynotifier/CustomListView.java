@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class CustomListView extends ArrayAdapter<String> {
@@ -27,29 +28,33 @@ public class CustomListView extends ArrayAdapter<String> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        View r = convertView;
+        View view = convertView;
         ViewHolder viewHolder = null;
-        if (r==null){
+        if (view==null){
             LayoutInflater layoutInflater = context.getLayoutInflater();
-            r = layoutInflater.inflate(R.layout.button_list_view_layout, null, true);
-            viewHolder = new ViewHolder(r);
-            r.setTag(viewHolder);
+            view = layoutInflater.inflate(R.layout.button_list_view_layout, null, true);
+            viewHolder = new ViewHolder(view);
+            view.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) r.getTag();
+            viewHolder = (ViewHolder) view.getTag();
         }
 
         viewHolder.title.setText(actionNames[position]);
+        viewHolder.colorsTest.setText(itemColor[position]);
+        viewHolder.waitedMessagesCircle.setImageResource(images[position]);
 
-
-        return r;
+        return view;
     }
 
     class ViewHolder{
         TextView title;
-
+        ImageView waitedMessagesCircle;
+        TextView colorsTest;
 
         ViewHolder(View v){
             title = (TextView) v.findViewById(R.id.actiontype);
+            colorsTest = (TextView) v.findViewById(R.id.waited_messages);
+            waitedMessagesCircle = (ImageView) v.findViewById(R.id.image_circle);
         }
     }
 }

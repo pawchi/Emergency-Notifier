@@ -75,7 +75,7 @@ public class CreateNotification extends AppCompatActivity {
         manager = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE));
 
         switch (extras){
-            case 1:
+            case 0:
                 myparent.addView(phoneNumber);
                 myparent.addView(writeSms);
                 myparent.addView(sendingTime);
@@ -86,7 +86,7 @@ public class CreateNotification extends AppCompatActivity {
                     }
                 });
                 break;
-            case 2:
+            case 1:
                 myparent.addView(phoneNumber);
                 myparent.addView(sendingTime);
                 send.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +98,7 @@ public class CreateNotification extends AppCompatActivity {
                     }
                 });
                 break;
-            case 3:
+            case 2:
                 myparent.addView(phoneNumber);
                 break;
         }

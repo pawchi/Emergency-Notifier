@@ -11,9 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
+import android.widget.TextView;
 import com.nex3z.notificationbadge.NotificationBadge;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
     int numberOfMessages = 0;
     NotificationBadge nBadge;
     ListView listView;
-    String[] itemColor = {"#9ad0f0", "#6f87c9", "#407b9f"};
+    String[] itemColor = {"5", "2", "12"};
     Integer[] images = {R.drawable.sms, android.R.drawable.sym_action_call, android.R.drawable.sym_action_email};
+    TextView showNoOfMessages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listViewMain);
         CustomListView customListView = new CustomListView(this, actionNames, itemColor, images );
+
+
         listView.setAdapter(customListView);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -51,20 +53,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*
-        if (listOfWaitedMessages != null){
-            int arrayLength = listOfWaitedMessages.size();
-            String lengthText = "Number of waited messages: " + arrayLength;
-            Toast.makeText(this, lengthText, Toast.LENGTH_LONG).show();
-        }*/
-
         //Show number in sms_badge
         //numberOfMessages = getIntent().getIntExtra(CreateNotification.UPDATED_NUMBER_OF_MESSAGES,0);
 
         SharedPreferences sharedPreferences = getSharedPreferences("smsList", Activity.MODE_PRIVATE);
+        numberOfMessages = 0;
         numberOfMessages = sharedPreferences.getInt("numberOfSms", 0);
-        nBadge = (NotificationBadge) findViewById(R.id.badge);
-        nBadge.setNumber(numberOfMessages);
+
+        if(numberOfMessages!=0) {
+            showNoOfMessages = (TextView) findViewById(R.id.waited_messages);
+            //showNoOfMessages.setText(numberOfMessages);
+        }
+
+
+        //nBadge = (NotificationBadge) findViewById(R.id.badge);
+        //nBadge.setNumber(numberOfMessages);
     }
 
     @Override

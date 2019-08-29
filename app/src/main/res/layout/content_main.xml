@@ -10,8 +10,6 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main_appbar">
 
-
-
         <LinearLayout
             android:id="@+id/how_to_notify_layout"
             android:layout_width="match_parent"
@@ -32,7 +30,6 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -40,8 +37,6 @@
                 android:paddingRight="16dp"
                 android:paddingLeft="16dp"
                 android:paddingBottom="16dp">
-
-
 
                 <ImageView
                     android:id="@+id/icon_sms"
@@ -62,76 +57,30 @@
                     app:nbBackground="@drawable/badge_with_shadow"
                     app:nbMaxTextLength="2">
                 </com.nex3z.notificationbadge.NotificationBadge>
-
-
             </RelativeLayout>
-
-
-
         </LinearLayout>
 
-
-        <!--
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_weight="1.95"
-            android:weightSum="3">
-
-            <Button
-                android:id="@+id/smsButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="#9ad0f0"
-                android:text="@string/sms_button"
-                android:textSize="24sp"
-                android:paddingTop="20dp"
-                android:layout_weight="1"
-                android:layout_marginTop="5dp"/>
-
-            <Button
-                android:id="@+id/callButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="#6f87c9"
-                android:text="@string/call_button"
-                android:textSize="24sp"
-                android:padding="10dp"
-                android:layout_weight="1"
-                android:paddingStart="50dp"
-                android:paddingEnd="50dp"/>
-
-            <Button
-                android:id="@+id/emailButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="#407b9f"
-                android:text="@string/email_button"
-                android:textSize="24sp"
-                android:padding="10dp"
-                android:layout_weight="1"
-                android:layout_marginBottom="5dp"/>
-        </LinearLayout>
-        -->
-
-    <ListView
-        android:id="@+id/listViewMain"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/linearLayoutForListViewMain"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@android:color/transparent"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        app:layout_constraintVertical_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="@id/conctraint_layout_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/how_to_notify_layout">
+        app:layout_constraintTop_toBottomOf="@+id/how_to_notify_layout"
+        android:baselineAligned="false">
 
-    </ListView>
+        <ListView
+            android:id="@+id/listViewMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:layout_weight="0.5">
+        </ListView>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
