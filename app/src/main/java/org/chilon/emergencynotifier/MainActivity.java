@@ -1,15 +1,21 @@
 package org.chilon.emergencynotifier;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.nex3z.notificationbadge.NotificationBadge;
@@ -39,9 +45,16 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listViewMain);
         CustomListView customListView = new CustomListView(this, actionNames, itemColor, images );
-
-
         listView.setAdapter(customListView);
+
+        //Adjust items height according screen height
+        /*
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        LinearLayout layoutToSet = (LinearLayout) findViewById(R.id.ll_to_set_height);
+        ViewGroup.LayoutParams params = layoutToSet.getLayoutParams();
+        params.height = (metrics.heightPixels)/3;
+        */
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -64,7 +64,7 @@
         android:id="@+id/linearLayoutForListViewMain"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="@id/conctraint_layout_main"
         app:layout_constraintEnd_toEndOf="parent"
