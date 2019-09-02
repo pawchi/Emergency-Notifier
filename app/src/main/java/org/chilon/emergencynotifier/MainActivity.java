@@ -18,6 +18,8 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.nex3z.notificationbadge.NotificationBadge;
 import java.util.ArrayList;
 
@@ -25,11 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
     MenuItem item;
     public static final String MAIN_RESPONSE = "method_of_sending";
-    ArrayList<ObjectToSend> listOfWaitedMessages;
     int numberOfMessages = 0;
-    NotificationBadge nBadge;
     ListView listView;
-    String[] itemColor = {"5", "2", "12"};
+    String smsNo = "0";
+    String callsNo = "0";
+    String emailsNo = "0";
+    String[] itemColor = {smsNo, callsNo, emailsNo};
     Integer[] images = {R.drawable.sms, android.R.drawable.sym_action_call, android.R.drawable.sym_action_email};
     TextView showNoOfMessages;
 
@@ -66,21 +69,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Show number in sms_badge
-        //numberOfMessages = getIntent().getIntExtra(CreateNotification.UPDATED_NUMBER_OF_MESSAGES,0);
+        //Get Parcelable data from Activity CreateNotification
 
-        SharedPreferences sharedPreferences = getSharedPreferences("smsList", Activity.MODE_PRIVATE);
-        numberOfMessages = 0;
-        numberOfMessages = sharedPreferences.getInt("numberOfSms", 0);
-
-        if(numberOfMessages!=0) {
-            showNoOfMessages = (TextView) findViewById(R.id.waited_messages);
-            //showNoOfMessages.setText(numberOfMessages);
+        try {
+            Intent intent = getIntent();
+            ObjectToSend objectToSend = intent.getParcelableExtra("sms_content");
+            String smsContent = objectToSend.getSmsContent();
+            Toast.makeText(MainActivity.this, smsContent, Toast.LENGTH_LONG).show();
+        } catch (NullPointerException e) {
         }
 
 
-        //nBadge = (NotificationBadge) findViewById(R.id.badge);
-        //nBadge.setNumber(numberOfMessages);
+
+
+        //Add sent content to DataBase
+        DatabaseHelper dh = new DatabaseHelper(this);
+
     }
 
     @Override

@@ -6,18 +6,18 @@ import android.os.Parcelable;
 public class ObjectToSend implements Parcelable {
     String phoneNumber;
     String smsContent;
-    String timeLeft;
+    String sendingTime;
 
-    public ObjectToSend(String phoneNumber, String smsContent, String timeLeft){
+    public ObjectToSend(String phoneNumber, String smsContent, String sendingTime){
         this.phoneNumber = phoneNumber;
         this.smsContent = smsContent;
-        this.timeLeft = timeLeft;
+        this.sendingTime = sendingTime;
     }
 
     protected ObjectToSend(Parcel in) {
         phoneNumber = in.readString();
         smsContent = in.readString();
-        timeLeft = in.readString();
+        sendingTime = in.readString();
     }
 
     public static final Creator<ObjectToSend> CREATOR = new Creator<ObjectToSend>() {
@@ -41,7 +41,7 @@ public class ObjectToSend implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(phoneNumber);
         parcel.writeString(smsContent);
-        parcel.writeString(timeLeft);
+        parcel.writeString(sendingTime);
     }
 
     public String getPhoneNumber() {
@@ -52,7 +52,7 @@ public class ObjectToSend implements Parcelable {
         return smsContent;
     }
 
-    public String getTimeLeft() {
-        return timeLeft;
+    public String getSendingTime() {
+        return sendingTime;
     }
 }

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -46,6 +45,8 @@ public class CreateNotification extends AppCompatActivity {
     private long timeLeftInMillis = 0;
     TextView setSendingTime;
     ArrayList<ObjectToSend> waitedMessages;
+    int smsesWaiting;
+    int smsesSent;
 
     StatePhoneReceiver myPhoneStateListner;
     TelephonyManager manager;
@@ -237,13 +238,10 @@ public class CreateNotification extends AppCompatActivity {
         }
     }
 
-    public void prepareHistoryOfMessages(String phoneNo, String smsMessage){
-        //ObjectToSend objectToSend = new ObjectToSend(phoneNo, smsMessage, "");
-        //waitedMessages.add(objectToSend);
-        //int amountOfMessages = waitedMessages.size();
-        saveAndAddNumberOfListToSharedPreferences();
+    public void prepareSmsHistory(String phoneNo, String smsMessage){
         Intent intent = new Intent(this, MainActivity.class);
-        //currantNumberOfMessages(intent);
+        ObjectToSend objectToSend = new ObjectToSend(phoneNo, smsMessage, "20:14");
+        intent.putExtra("sms_content", objectToSend);
         startActivity(intent);
     }
 
@@ -284,7 +282,7 @@ public class CreateNotification extends AppCompatActivity {
     private void startSmsTimer(){
         final String phoneNumber = number.getText().toString();
         final String smsMessage  = message.getText().toString();
-        prepareHistoryOfMessages(phoneNumber, smsMessage);
+        prepareSmsHistory(phoneNumber, smsMessage);
         new CountDownTimer(timeLeftInMillis, 1000){
 
             public void onTick(long millisUntilFinished){
@@ -306,7 +304,6 @@ public class CreateNotification extends AppCompatActivity {
     }
 
     //Phone Call ****************************************************************************
-
     public void preparePhoneCall(){
         number = findViewById(R.id.input_phone_number_field);
         String phoneCallWillStart = getResources().getString(R.string.toast_phone_call_wiil_start);
@@ -347,12 +344,5 @@ public class CreateNotification extends AppCompatActivity {
         //audioManager.setMode(AudioManager.MODE_NORMAL);
     }
 
-    public void prepareHistoryOfCalls(){
-
-    }
-
-    public void updateHistoryOfCalls(){
-
-    }
 
 }
