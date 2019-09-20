@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String MAIN_RESPONSE = "method_of_sending";
     int numberOfMessages = 0;
     ListView listView;
-    String smsNo = "0";
+    String smsNo = "7";
     String callsNo = "0";
     String emailsNo = "0";
     String[] itemColor = {smsNo, callsNo, emailsNo};
@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         String[] actionNames = {getResources().getString(R.string.sms_button), getResources().getString(R.string.call_button), getResources().getString(R.string.email_button)};
 
+        smsNo = "9";
+        itemColor = new String[] {smsNo, callsNo, emailsNo};
 
         listView = (ListView) findViewById(R.id.listViewMain);
         CustomListView customListView = new CustomListView(this, actionNames, itemColor, images );
@@ -69,21 +71,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Get Parcelable data from Activity CreateNotification
-
         try {
+            //Get Parcelable data from Activity CreateNotification
             Intent intent = getIntent();
             ObjectToSend objectToSend = intent.getParcelableExtra("sms_content");
             String smsContent = objectToSend.getSmsContent();
             Toast.makeText(MainActivity.this, smsContent, Toast.LENGTH_LONG).show();
-        } catch (NullPointerException e) {
-        }
 
+            //Add sent content to DataBase
+            DatabaseHelper db = new DatabaseHelper(this);
+            boolean success = db.addData(1, smsContent);
+            if (success) {
+                Toast.makeText(MainActivity.this, "Data saved in DataBase!! ",  Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(MainActivity.this, "Not saved in DB :( ", Toast.LENGTH_LONG).show();
+            }
+        } catch (NullPointerException e) {}
 
-
-
-        //Add sent content to DataBase
-        DatabaseHelper dh = new DatabaseHelper(this);
 
     }
 
